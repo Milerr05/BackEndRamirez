@@ -14,37 +14,39 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final static Logger logger = (Logger) LoggerFactory.getLogger(JwtProvider.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
     @Autowired
-    JwtProvider jwtProvider;
+    private JwtProvider jwtProvider;
+
     @Autowired
-    UserDetailsImp userDetailsServiceImp;
+    private UserDetailsImp userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
         try {
             String token = getToken(request);
             if (token != null && jwtProvider.validateToken(token)) {
-                String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
-                UserDetails userDetails = userDetailsServiceImp.loadUserByUsername(nombreUsuario);
-                UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                String username = jwtProvider.getNombreUsuarioFromToken(token);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         } catch (Exception e) {
-            logger.error("Fallo el metodoFilterInternal");
+            logger.error("Error en el método doFilterInternal", e);
         }
 
         filterChain.doFilter(request, response);
     }
 
     private String getToken(HttpServletRequest request) {
-        String header = request.getHeader("Authorization");
-        if (header!=null && header.startsWith("Bearer")) {
-            return header.replace("Bearer", "");
-        }
+           String header = request.getHeader("Authorization");
+        if(header != null && header.startsWith("Bearer"))
+            return header.replace("Bearer ", "");
         return null;
+
     }
 }

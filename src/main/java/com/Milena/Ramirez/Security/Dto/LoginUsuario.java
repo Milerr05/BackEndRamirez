@@ -11,7 +11,7 @@ private String nombreUsuario;
 private String password;
     
 
-//Getter y Setter
+    //Getter & Setter
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -28,5 +28,5 @@ private String password;
     public void setPassword(String password) {
         this.password = password;
     }
-
+    
 }
