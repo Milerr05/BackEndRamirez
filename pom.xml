@@ -14,7 +14,7 @@
     <name>Ramirez</name>
     <description>Proyecto</description>
 	<properties>
-		<java.version>12</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -61,7 +61,6 @@
 	  <groupId>jakarta.validation</groupId>
 	  <artifactId>jakarta.validation-api</artifactId>
 	  <type>jar</type>
-	  <version>2.0.2</version>
 	 </dependency>
 	 <dependency>
 	  <groupId>jakarta.transaction</groupId>
@@ -71,13 +70,11 @@
 	 <dependency>
 	  <groupId>org.springframework.security</groupId>
 	  <artifactId>spring-security-core</artifactId>
-	  <version>5.7.8</version>
 	  <type>jar</type>
 	 </dependency>
 	 <dependency>
 	  <groupId>org.springframework.security</groupId>
 	  <artifactId>spring-security-web</artifactId>
-	  <version>5.7.8</version>
 	  <type>jar</type>
 	 </dependency>
 	 <dependency>
@@ -88,14 +85,12 @@
 	 </dependency>
          <dependency>
 	<groupId>org.springframework.security</groupId>
-	<artifactId>spring-security-config</artifactId>
-	<version>5.7.8</version>
+	<artifactId>spring-security-config</artifactId>	
              <type>jar</type>
          </dependency>
 	 <dependency>
 	  <groupId>org.apache.commons</groupId>
 	  <artifactId>commons-lang3</artifactId>
-	  <version>3.12.0</version>
 	  <type>jar</type>
 	 </dependency>
 	</dependencies>
