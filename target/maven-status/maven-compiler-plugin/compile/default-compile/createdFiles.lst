@@ -1,4 +1,3 @@
-com\Milena\Ramirez\Interface\IPersonaService.class
 com\Milena\Ramirez\Security\Entity\Rol.class
 com\Milena\Ramirez\Entity\Educacion.class
 com\Milena\Ramirez\Security\Enums\RolNombre.class
